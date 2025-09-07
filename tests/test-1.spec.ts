@@ -134,3 +134,177 @@ await expect(page.locator('h2')).toContainText('Kate Winslet');
   
   
 });
+
+test('tesclint2t', async ({ page }) => {
+ 
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Clint Eastwood');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Clint Eastwood', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Clint Eastwood');
+
+  await page.getByRole('link', { name: 'Pašerák' }).first().click();
+  await expect(page.locator('h1')).toContainText('Pašerák');
+});
+
+test('CSFD test - Pravá blondýnka', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Reese Witherspoon');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Reese Witherspoon', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Reese Witherspoon');
+
+  await page.getByRole('link', { name: 'Srdečně vás zveme' }).first().click();
+  await expect(page.locator('h1')).toContainText('Srdečně vás zveme');
+});
+
+test('CSFD test - Forrest Gump', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Tom Hanks');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Tom Hanks', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Tom Hanks');
+
+  await page.getByRole('link', { name: 'Forrest Gump' }).first().click();
+  await expect(page.locator('h1')).toContainText('Forrest Gump');
+});
+
+test('testreesew', async ({ page }) => {
+   await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.themoviedb.org/');
+  await page.getByPlaceholder('Search for a movie, tv show, person...', { exact: true }).click();
+   await page.getByPlaceholder('Search for a movie, tv show, person...', { exact: true }).fill('Reese Witherspoon');
+    await page.getByText('Reese Witherspoon in People').click();
+   await page.getByText('Reese Witherspoon', { exact: true }).click();
+ 
+  
+  await page.getByRole('link', { name: 'Reese Witherspoon', exact: true }).click();
+  await expect(page.locator('#media_v4')).toContainText('Reese Witherspoon');
+ 
+ 
+  await page.getByRole('listitem').filter({ hasText: 'This Means War' }).locator('div').getByRole('link').click();
+  await page.getByRole('link', { name: 'This Means War' }).click();
+  await expect(page.locator('#original_header')).toContainText('This Means War');
+
+  await page.locator('#media_scroller').getByRole('link').click();
+
+
+  await page.getByRole('dialog', { name: 'This Means War (2012) Trailer' }).locator('iframe').contentFrame().locator('video').click();
+});
+
+test('Reese Witherspoon Known For proklik2', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.themoviedb.org/');
+
+  // Vyhledání herečky
+  await page.getByPlaceholder('Search for a movie, tv show, person...', { exact: true }).click();
+  await page.getByPlaceholder('Search for a movie, tv show, person...', { exact: true }).fill('Reese Witherspoon');
+  await page.getByText('Reese Witherspoon in People').click();
+
+  // Kliknutí na samotnou herečku
+  await page.getByText('Reese Witherspoon', { exact: true }).click();
+  await expect(page.locator('#media_v4')).toContainText('Reese Witherspoon');
+
+
+ await page.getByRole('listitem').filter({ hasText: 'Legally Blonde' }).locator('div').getByRole('link').click();
+
+
+await page.getByText('Selma Blair').click();
+await expect(page.locator('#media_v4')).toContainText('Selma Blair');
+await page.getByRole('paragraph').filter({ hasText: /^Cruel Intentions$/ }).getByRole('link').click();
+await expect(page.locator('#original_header')).toContainText('Cruel Intentions');
+
+
+await page.getByRole('link', { name: 'Play Trailer' }).click();
+await page.getByRole('dialog', { name: 'Play Trailer' }).getByLabel('Close').click();
+
+});
+
+
+test('testclint', async ({ page }) => {
+ 
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Clint Eastwood');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Clint Eastwood', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Clint Eastwood');
+
+  await page.getByRole('link', { name: 'Pašerák' }).first().click();
+  await expect(page.locator('h1')).toContainText('Pašerák');
+});
+
+test('CSFD test - Pravá blondýnkareese', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Reese Witherspoon');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Reese Witherspoon', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Reese Witherspoon');
+
+  await page.getByRole('link', { name: 'Srdečně vás zveme' }).first().click();
+  await expect(page.locator('h1')).toContainText('Srdečně vás zveme');
+});
+
+test('CSFD test - Forrest Gumptom', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('https://www.csfd.cz/');
+
+  const cookieButton = page.getByRole('button', { name: 'Souhlasit a zavřít: Souhlasit' });
+  if (await cookieButton.isVisible()) await cookieButton.click();
+
+  await page.getByRole('combobox', { name: 'Vyhledávání' }).fill('Tom Hanks');
+  await page.getByRole('button').filter({ hasText: 'Hledat' }).click();
+
+  const personLink = page.getByRole('heading', { name: 'Tom Hanks', exact: true }).getByRole('link');
+  await personLink.click();
+  await expect(page.locator('h1')).toContainText('Tom Hanks');
+
+  await page.getByRole('link', { name: 'Forrest Gump' }).first().click();
+  await expect(page.locator('h1')).toContainText('Forrest Gump');
+});
+
+
+
+
+
+
+
+
+
+  
+
+
