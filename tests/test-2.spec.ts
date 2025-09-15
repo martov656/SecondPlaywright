@@ -38,12 +38,12 @@ test('testmeg', async ({ page }) => {
   await page.getByRole('searchbox', { name: 'Hledat klíčová slova' }).click();
   await page.getByRole('searchbox', { name: 'Hledat klíčová slova' }).fill('Transformers');
   await page.getByRole('button', { name: 'Hledat' }).click();
-  await page.getByRole('button', { name: '2' }).nth(1).click();
-  await page.getByRole('button', { name: '3' }).nth(1).click();
-  await page.getByRole('link', { name: 'Transformers: Poslední rytíř' }).click();
-  await expect(page.locator('h2')).toContainText('Transformers: Poslední rytíř / Transformers: The Last Knight');
-  await page.getByRole('link', { name: 'Mark Wahlberg' }).click();
-  await expect(page.locator('h2')).toContainText('Mark Wahlberg');
+  await page.getByRole('link', { name: 'Re: Gemma Chan' }).click();
+  await expect(page.locator('h2')).toContainText('Gemma Chan');
+
+  await expect(page.getByRole('img', { name: 'Obrázek' })).toBeVisible();
+  await page.locator('#post_content235797').getByRole('link', { name: 'Nina Horáková' }).click();
+  await expect(page.locator('h2')).toContainText('Nina Horáková');
 
 });
 
