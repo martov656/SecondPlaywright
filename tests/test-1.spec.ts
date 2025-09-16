@@ -214,7 +214,7 @@ test('testreesew', async ({ page }) => {
 });
 
 test('Reese Witherspoon Known For proklik2', async ({ page }) => {
-  await page.setViewportSize({ width: 1920, height: 1080 });
+  
   await page.goto('https://www.themoviedb.org/');
 
   // Vyhledání herečky
@@ -230,14 +230,15 @@ test('Reese Witherspoon Known For proklik2', async ({ page }) => {
  await page.getByRole('listitem').filter({ hasText: 'Legally Blonde' }).locator('div').getByRole('link').click();
 
 
-await page.getByText('Selma Blair').click();
-await expect(page.locator('#media_v4')).toContainText('Selma Blair');
-await page.getByRole('paragraph').filter({ hasText: /^Cruel Intentions$/ }).getByRole('link').click();
-await expect(page.locator('#original_header')).toContainText('Cruel Intentions');
+ await page.getByRole('link', { name: 'Search' }).click();
+ await page.getByPlaceholder('Search for a movie, tv show,').fill('This means War!');
+ await page.getByText('in Movies').click();
+ await expect(page.locator('#main')).toContainText('This Means War');
+ await page.locator('a').filter({ hasText: /^This Means War$/ }).click();
+ await expect(page.locator('#original_header')).toContainText('This Means War');
+ await page.getByText('Reese Witherspoon').click();
+ await expect(page.locator('#media_v4')).toContainText('Reese Witherspoon');
 
-
-await page.getByRole('link', { name: 'Play Trailer' }).click();
-await page.getByRole('dialog', { name: 'Play Trailer' }).getByLabel('Close').click();
 
 });
 
