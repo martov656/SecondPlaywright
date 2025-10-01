@@ -299,6 +299,54 @@ test('CSFD test - Forrest Gumptom', async ({ page }) => {
 });
 
 
+test('testkatetmdb', async ({ page }) => {
+  await page.goto('https://div.cz/');
+
+    await page.getByRole('searchbox', { name: 'Vyhledávání' }).click();
+  await page.getByRole('searchbox', { name: 'Vyhledávání' }).fill('Lee: Fotografka v první linii');
+  await page.getByRole('searchbox', { name: 'Vyhledávání' }).press('Enter');
+  await expect(page.locator('h2')).toContainText('Lee: Fotografka v první linii');
+
+ 
+  await page.getByText('Lee: Fotografka v první linii', { exact: true }).click();
+
+await page.getByRole('link', { name: 'Kate Winslet' }).click({ timeout: 12000 });
+await expect(page.locator('h2')).toContainText('Kate Winslet');
+
+  await page.getByRole('link', { name: 'Hora mezi námi' }).click();
+  await expect(page.locator('h2')).toContainText('Hora mezi námi');
+  await page.getByRole('link', { name: 'tmdb.org' }).click();
+  await expect(page.locator('h2')).toContainText('The Mountain Between Us');
+  await page.getByText('Kate Winslet').click();
+ 
+  await expect(page.locator('#media_v4')).toContainText('Kate Winslet');
+  
+});
+
+test('testscarktmdb', async ({ page }) => {
+  await page.goto('https://div.cz/');
+
+    await page.getByRole('searchbox', { name: 'Vyhledávání' }).click();
+  await page.getByRole('searchbox', { name: 'Vyhledávání' }).fill('Black Widow');
+  await page.getByRole('searchbox', { name: 'Vyhledávání' }).press('Enter');
+  await expect(page.locator('h2')).toContainText('Black Widow');
+
+ 
+  await page.getByText('Black Widow', { exact: true }).click();
+
+  await page.getByRole('link', { name: 'Scarlett Johansson' }).first().click();
+  await expect(page.locator('h2')).toContainText('Scarlett Johansson');
+  await page.getByRole('link', { name: 'Jurský svět: Znovuzrození' }).click();
+  await expect(page.locator('h2')).toContainText('Jurský svět: Znovuzrození');
+  await page.getByRole('link', { name: 'tmdb.org' }).click();
+  await expect(page.locator('#original_header')).toContainText('Jurassic World Rebirth');
+  await page.getByText('Scarlett Johansson').click();
+  await expect(page.locator('#media_v4')).toContainText('Scarlett Johansson');
+
+
+  
+});
+
 
 
 
